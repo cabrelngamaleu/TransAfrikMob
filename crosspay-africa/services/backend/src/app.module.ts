@@ -11,6 +11,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
 import { MonitoringModule } from './monitoring/monitoring.module';
 import { GamificationModule } from './gamification/gamification.module';
 import { AirtimeModule } from './airtime/airtime.module';
+import { AIModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { AirtimeModule } from './airtime/airtime.module';
     MonitoringModule,
     GamificationModule,
     AirtimeModule,
+    AIModule,
   ],
 })
 export class AppModule {}
