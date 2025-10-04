@@ -9,6 +9,7 @@ import { WebhooksModule } from './webhooks/webhooks.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { MonitoringModule } from './monitoring/monitoring.module';
+import { GamificationModule } from './gamification/gamification.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { MonitoringModule } from './monitoring/monitoring.module';
     NotificationsModule,
     AnalyticsModule,
     MonitoringModule,
+    GamificationModule,
   ],
 })
 export class AppModule {}
