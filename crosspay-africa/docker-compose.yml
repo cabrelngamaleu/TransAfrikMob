@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: crosspay-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: crosspay
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - crosspay-network
+
+  redis:
+    image: redis:alpine
+    container_name: crosspay-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - crosspay-network
+
+  backend:
+    build:
+      context: ./services/backend
+      dockerfile: Dockerfile
+    container_name: crosspay-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_DATABASE=crosspay
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PAYMENTS_SERVICE_URL=http://payments:3001
+    networks:
+      - crosspay-network
+    volumes:
+      - ./services/backend:/app
+      - /app/node_modules
+
+  payments:
+    build:
+      context: ./services/payments
+      dockerfile: Dockerfile
+    container_name: crosspay-payments
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_DATABASE=crosspay
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - crosspay-network
+    volumes:
+      - ./services/payments:/app
+      - /app/node_modules
+
+networks:
+  crosspay-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

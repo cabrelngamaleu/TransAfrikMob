@@ -1,0 +1,30 @@
+{
+  "name": "crosspay-africa",
+  "version": "0.1.0",
+  "description": "Cross-border mobile money payment platform for Africa",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "start:dev": "npm run start:dev --workspaces",
+    "build": "npm run build --workspaces --no-workspace=@crosspay-africa/mobile",
+    "test": "npm run test --workspaces",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "mobile-money",
+    "africa",
+    "payments",
+    "cross-border"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@nestjs/throttler": "^6.4.0",
+    "date-fns": "^4.1.0"
+  }
+}
