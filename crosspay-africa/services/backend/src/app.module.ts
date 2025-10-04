@@ -12,6 +12,10 @@ import { MonitoringModule } from './monitoring/monitoring.module';
 import { GamificationModule } from './gamification/gamification.module';
 import { AirtimeModule } from './airtime/airtime.module';
 import { AIModule } from './ai/ai.module';
+import { BillsModule } from './bills/bills.module';
+import { CardsModule } from './cards/cards.module';
+import { LoansModule } from './loans/loans.module';
+import { CryptoModule } from './crypto/crypto.module';
 
 @Module({
   imports: [
@@ -44,6 +48,10 @@ import { AIModule } from './ai/ai.module';
     GamificationModule,
     AirtimeModule,
     AIModule,
+    BillsModule,
+    CardsModule,
+    LoansModule,
+    CryptoModule,
   ],
 })
 export class AppModule {}
