@@ -12,8 +12,15 @@
     "start:dev": "npm run start:dev --workspaces",
     "build": "npm run build --workspaces --no-workspace=@crosspay-africa/mobile",
     "test": "npm run test --workspaces",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:coverage": "npm run test:cov --workspaces",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "prepare": "husky install",
+    "lint": "npm run lint --workspaces",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
   },
   "keywords": [
     "mobile-money",
@@ -26,5 +33,13 @@
   "dependencies": {
     "@nestjs/throttler": "^6.4.0",
     "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@playwright/test": "^1.40.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
   }
 }

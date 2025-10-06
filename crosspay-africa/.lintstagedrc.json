@@ -1,0 +1,19 @@
+{
+  "*.{ts,tsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "*.{js,jsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "*.{json,md,yml,yaml}": [
+    "prettier --write"
+  ],
+  "services/backend/src/**/*.ts": [
+    "cd services/backend && npm run lint -- --fix"
+  ],
+  "apps/admin/**/*.{ts,tsx}": [
+    "cd apps/admin && npm run lint -- --fix"
+  ]
+}

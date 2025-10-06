@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🧪 Exécution des tests avant push..."
+echo ""
+
+# Tests Backend
+echo "📦 Tests Backend..."
+cd services/backend && npm run test --silent || exit 1
+
+# Tests Admin
+echo "🎨 Tests Admin..."
+cd ../../apps/admin && npm run test --silent || exit 1
+
+# Tests Mobile
+echo "📱 Tests Mobile..."
+cd ../mobile && npm run test --silent || exit 1
+
+echo ""
+echo "✅ Tous les tests sont passés! Push autorisé."
