@@ -42,7 +42,7 @@ export default function Settings() {
               </Heading>
               <Stack spacing={4}>
                 <FormControl>
-                  <FormLabel>Nom de l'entreprise</FormLabel>
+                  <FormLabel>Nom de l&apos;entreprise</FormLabel>
                   <Input defaultValue="CrossPay Africa" />
                 </FormControl>
                 <FormControl>

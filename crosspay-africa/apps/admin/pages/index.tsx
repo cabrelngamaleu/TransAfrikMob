@@ -361,10 +361,10 @@ export default function Home() {
                 >
                   <Text>POST /api/v1/transactions</Text>
                   <Text color="gray.500" mt={1}>{'{'}</Text>
-                  <Text color="gray.500" ml={4}>"amount": 1000,</Text>
-                  <Text color="gray.500" ml={4}>"currency": "USD",</Text>
-                  <Text color="gray.500" ml={4}>"destination": "wallet_id",</Text>
-                  <Text color="gray.500" ml={4}>"description": "Payment for services"</Text>
+                  <Text color="gray.500" ml={4}>&quot;amount&quot;: 1000,</Text>
+                  <Text color="gray.500" ml={4}>&quot;currency&quot;: &quot;USD&quot;,</Text>
+                  <Text color="gray.500" ml={4}>&quot;destination&quot;: &quot;wallet_id&quot;,</Text>
+                  <Text color="gray.500" ml={4}>&quot;description&quot;: &quot;Payment for services&quot;</Text>
                   <Text color="gray.500">{'}'}</Text>
                 </Box>
               </Flex>

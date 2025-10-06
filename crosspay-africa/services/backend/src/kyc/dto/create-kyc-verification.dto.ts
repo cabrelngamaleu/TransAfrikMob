@@ -1,5 +1,14 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, IsDateString, IsBoolean, IsNumber } from 'class-validator';
-import { DocumentType } from '../verification-status.enum';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUUID,
+  IsDateString,
+  IsBoolean,
+  IsNumber,
+} from "class-validator";
+import { DocumentType } from "../verification-status.enum";
 
 export class CreateKycVerificationDto {
   @IsUUID()
@@ -17,7 +26,7 @@ export class CreateKycVerificationDto {
   @IsDateString()
   @IsOptional()
   documentExpiryDate?: Date;
-  
+
   @IsNumber()
   @IsOptional()
   verificationAmount?: number;

@@ -1,13 +1,20 @@
-import { KycVerification } from '../../kyc/entities/kyc-verification.entity';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { Exclude } from 'class-transformer';
-import { Notification } from '../../notifications/entities/notification.entity';
+import { KycVerification } from "../../kyc/entities/kyc-verification.entity";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from "typeorm";
+import { Exclude } from "class-transformer";
+import { Notification } from "../../notifications/entities/notification.entity";
 
-@Entity('users')
+@Entity("users")
 export class User {
-  @OneToMany(() => KycVerification, kycVerification => kycVerification.user)
+  @OneToMany(() => KycVerification, (kycVerification) => kycVerification.user)
   kycVerifications: KycVerification[];
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ unique: true })
@@ -29,7 +36,7 @@ export class User {
   @Column({ default: false })
   isVerified: boolean;
 
-  @Column({ type: 'simple-array', default: 'user' })
+  @Column({ type: "simple-array", default: "user" })
   roles: string[];
 
   @CreateDateColumn()
@@ -37,10 +44,10 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
-  
+
   @Column()
   phone: string;
-  
-  @OneToMany(() => Notification, notification => notification.user)
+
+  @OneToMany(() => Notification, (notification) => notification.user)
   notifications: Notification[];
 }

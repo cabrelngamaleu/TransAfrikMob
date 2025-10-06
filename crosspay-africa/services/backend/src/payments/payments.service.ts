@@ -1,17 +1,17 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { OrangeMoneyAdapter } from './adapters/orange-money.adapter';
-import { MtnMobileMoneyAdapter } from './adapters/mtn-mobile-money.adapter';
-import { 
-  PaymentAdapter, 
-  PaymentInitiationRequest, 
-  PaymentInitiationResponse, 
-  PaymentVerificationRequest, 
-  PaymentVerificationResponse 
-} from './adapters/payment-adapter.interface';
+import { Injectable, Logger, NotFoundException } from "@nestjs/common";
+import { OrangeMoneyAdapter } from "./adapters/orange-money.adapter";
+import { MtnMobileMoneyAdapter } from "./adapters/mtn-mobile-money.adapter";
+import {
+  PaymentAdapter,
+  PaymentInitiationRequest,
+  PaymentInitiationResponse,
+  PaymentVerificationRequest,
+  PaymentVerificationResponse,
+} from "./adapters/payment-adapter.interface";
 
 export enum PaymentProvider {
-  ORANGE_MONEY = 'orange_money',
-  MTN_MOBILE_MONEY = 'mtn_mobile_money',
+  ORANGE_MONEY = "orange_money",
+  MTN_MOBILE_MONEY = "mtn_mobile_money",
 }
 
 @Injectable()
@@ -21,7 +21,7 @@ export class PaymentsService {
 
   constructor(
     private orangeMoneyAdapter: OrangeMoneyAdapter,
-    private mtnMobileMoneyAdapter: MtnMobileMoneyAdapter,
+    private mtnMobileMoneyAdapter: MtnMobileMoneyAdapter
   ) {
     this.adapters.set(PaymentProvider.ORANGE_MONEY, orangeMoneyAdapter);
     this.adapters.set(PaymentProvider.MTN_MOBILE_MONEY, mtnMobileMoneyAdapter);
@@ -40,7 +40,7 @@ export class PaymentsService {
 
   async initiatePayment(
     provider: PaymentProvider,
-    request: PaymentInitiationRequest,
+    request: PaymentInitiationRequest
   ): Promise<PaymentInitiationResponse> {
     const adapter = this.getAdapter(provider);
     this.logger.log(`Initiating payment with provider: ${provider}`);
@@ -49,7 +49,7 @@ export class PaymentsService {
 
   async verifyPayment(
     provider: PaymentProvider,
-    request: PaymentVerificationRequest,
+    request: PaymentVerificationRequest
   ): Promise<PaymentVerificationResponse> {
     const adapter = this.getAdapter(provider);
     this.logger.log(`Verifying payment with provider: ${provider}`);

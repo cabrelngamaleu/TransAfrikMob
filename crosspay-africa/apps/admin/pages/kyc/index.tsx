@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Box,
   Heading,
@@ -46,11 +46,7 @@ const KycVerificationList = () => {
   const token = localStorage.getItem('token');
   const router = useRouter();
 
-  useEffect(() => {
-    fetchVerifications();
-  }, [statusFilter]);
-
-  const fetchVerifications = async () => {
+  const fetchVerifications = useCallback(async () => {
     try {
       setLoading(true);
       const endpoint = statusFilter === 'pending' 
@@ -78,7 +74,11 @@ const KycVerificationList = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter, token]);
+
+  useEffect(() => {
+    fetchVerifications();
+  }, [fetchVerifications]);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
