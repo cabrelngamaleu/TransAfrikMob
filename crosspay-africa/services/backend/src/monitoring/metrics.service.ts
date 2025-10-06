@@ -1,30 +1,42 @@
-import { Injectable } from '@nestjs/common';
-import { Counter, Gauge, Histogram } from 'prom-client';
-import { InjectMetric } from '@willsoto/nestjs-prometheus';
+import { Injectable } from "@nestjs/common";
+import { Counter, Gauge, Histogram } from "prom-client";
+import { InjectMetric } from "@willsoto/nestjs-prometheus";
 
 @Injectable()
 export class MetricsService {
   constructor(
-    @InjectMetric('http_requests_total')
+    @InjectMetric("http_requests_total")
     private readonly httpRequestsCounter: Counter<string>,
-    
-    @InjectMetric('transaction_amount_total')
+
+    @InjectMetric("transaction_amount_total")
     private readonly transactionAmountCounter: Counter<string>,
-    
-    @InjectMetric('active_users')
+
+    @InjectMetric("active_users")
     private readonly activeUsersGauge: Gauge<string>,
-    
-    @InjectMetric('api_request_duration_seconds')
-    private readonly apiRequestDurationHistogram: Histogram<string>,
+
+    @InjectMetric("api_request_duration_seconds")
+    private readonly apiRequestDurationHistogram: Histogram<string>
   ) {}
 
   // HTTP Requests
-  incrementHttpRequests(method: string, endpoint: string, statusCode: number): void {
-    this.httpRequestsCounter.inc({ method, endpoint, statusCode: statusCode.toString() });
+  incrementHttpRequests(
+    method: string,
+    endpoint: string,
+    statusCode: number
+  ): void {
+    this.httpRequestsCounter.inc({
+      method,
+      endpoint,
+      statusCode: statusCode.toString(),
+    });
   }
 
   // Transaction Metrics
-  recordTransactionAmount(amount: number, currency: string, status: string): void {
+  recordTransactionAmount(
+    amount: number,
+    currency: string,
+    status: string
+  ): void {
     this.transactionAmountCounter.inc({ currency, status }, amount);
   }
 
@@ -34,10 +46,14 @@ export class MetricsService {
   }
 
   // API Performance
-  recordApiRequestDuration(method: string, endpoint: string, durationMs: number): void {
+  recordApiRequestDuration(
+    method: string,
+    endpoint: string,
+    durationMs: number
+  ): void {
     this.apiRequestDurationHistogram.observe(
       { method, endpoint },
-      durationMs / 1000, // Convert to seconds
+      durationMs / 1000 // Convert to seconds
     );
   }
 }

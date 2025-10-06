@@ -1,37 +1,43 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn } from 'typeorm';
-import { User } from '../../users/entities/user.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+} from "typeorm";
+import { User } from "../../users/entities/user.entity";
 
 export enum NotificationType {
-  EMAIL = 'email',
-  SMS = 'sms',
-  PUSH = 'push',
+  EMAIL = "email",
+  SMS = "sms",
+  PUSH = "push",
 }
 
 export enum NotificationStatus {
-  PENDING = 'pending',
-  SENT = 'sent',
-  FAILED = 'failed',
+  PENDING = "pending",
+  SENT = "sent",
+  FAILED = "failed",
 }
 
 @Entity()
 export class Notification {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne(() => User, user => user.notifications)
+  @ManyToOne(() => User, (user) => user.notifications)
   user: User;
 
   @Column()
   userId: string;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: NotificationType,
   })
   type: NotificationType;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: NotificationStatus,
     default: NotificationStatus.PENDING,
   })

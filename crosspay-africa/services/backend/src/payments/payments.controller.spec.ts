@@ -1,10 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PaymentsController } from './payments.controller';
-import { PaymentsService } from './payments.service';
-import { QuoteService } from './quote.service';
-import { QuoteRequestDto, QuoteResponseDto } from './dto/quote.dto';
+import { Test, TestingModule } from "@nestjs/testing";
+import { PaymentsController } from "./payments.controller";
+import { PaymentsService } from "./payments.service";
+import { QuoteService } from "./quote.service";
+import { QuoteRequestDto, QuoteResponseDto } from "./dto/quote.dto";
 
-describe('PaymentsController', () => {
+describe("PaymentsController", () => {
   let controller: PaymentsController;
   let quoteService: QuoteService;
   let paymentsService: PaymentsService;
@@ -35,23 +35,23 @@ describe('PaymentsController', () => {
     paymentsService = module.get<PaymentsService>(PaymentsService);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(controller).toBeDefined();
   });
 
-  describe('getQuote', () => {
-    it('should return a quote response', async () => {
+  describe("getQuote", () => {
+    it("should return a quote response", async () => {
       const quoteRequest: QuoteRequestDto = {
-        recipientPhone: '+2348000000000',
+        recipientPhone: "+2348000000000",
         amount: 100,
-        sourceCurrency: 'GHS',
+        sourceCurrency: "GHS",
       };
 
       const quoteResponse = {
-        sourceCountry: 'GH',
-        targetCountry: 'NG',
-        sourceCurrency: 'GHS',
-        targetCurrency: 'NGN',
+        sourceCountry: "GH",
+        targetCountry: "NG",
+        sourceCurrency: "GHS",
+        targetCurrency: "NGN",
         amount: 100,
         convertedAmount: 5500,
         exchangeRate: 55,
@@ -65,11 +65,11 @@ describe('PaymentsController', () => {
             aggregatorFee: 3,
           },
         },
-        availableRails: ['MFS Africa', 'Flutterwave'],
-        estimatedDeliveryTime: '1-2 jours ouvrables',
+        availableRails: ["MFS Africa", "Flutterwave"],
+        estimatedDeliveryTime: "1-2 jours ouvrables",
       };
 
-      jest.spyOn(quoteService, 'calculateQuote').mockReturnValue(quoteResponse);
+      jest.spyOn(quoteService, "calculateQuote").mockReturnValue(quoteResponse);
 
       expect(await controller.getQuote(quoteRequest)).toBe(quoteResponse);
       expect(quoteService.calculateQuote).toHaveBeenCalledWith(quoteRequest);

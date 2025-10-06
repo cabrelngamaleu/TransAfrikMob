@@ -1,10 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Notification, NotificationType, NotificationStatus } from './entities/notification.entity';
-import { UsersService } from '../users/users.service';
-import { ConfigService } from '@nestjs/config';
-import * as nodemailer from 'nodemailer';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import {
+  Notification,
+  NotificationType,
+  NotificationStatus,
+} from "./entities/notification.entity";
+import { UsersService } from "../users/users.service";
+import { ConfigService } from "@nestjs/config";
+import * as nodemailer from "nodemailer";
 
 @Injectable()
 export class NotificationsService {
@@ -14,16 +18,16 @@ export class NotificationsService {
     @InjectRepository(Notification)
     private notificationsRepository: Repository<Notification>,
     private usersService: UsersService,
-    private configService: ConfigService,
+    private configService: ConfigService
   ) {
     // Initialiser le transporteur d'email
     this.emailTransporter = nodemailer.createTransport({
-      host: this.configService.get('SMTP_HOST'),
-      port: this.configService.get('SMTP_PORT'),
-      secure: this.configService.get('SMTP_SECURE') === 'true',
+      host: this.configService.get("SMTP_HOST"),
+      port: this.configService.get("SMTP_PORT"),
+      secure: this.configService.get("SMTP_SECURE") === "true",
       auth: {
-        user: this.configService.get('SMTP_USER'),
-        pass: this.configService.get('SMTP_PASSWORD'),
+        user: this.configService.get("SMTP_USER"),
+        pass: this.configService.get("SMTP_PASSWORD"),
       },
     });
   }
@@ -33,7 +37,7 @@ export class NotificationsService {
     type: NotificationType,
     title: string,
     content: string,
-    data?: any,
+    data?: any
   ): Promise<Notification> {
     const user = await this.usersService.findOne(userId);
     if (!user) {
@@ -49,7 +53,9 @@ export class NotificationsService {
       status: NotificationStatus.PENDING,
     });
 
-    const savedNotification = await this.notificationsRepository.save(notification);
+    const savedNotification = await this.notificationsRepository.save(
+      notification
+    );
 
     // Envoyer la notification en fonction du type
     try {
@@ -76,9 +82,13 @@ export class NotificationsService {
     }
   }
 
-  async sendEmail(email: string, subject: string, content: string): Promise<void> {
+  async sendEmail(
+    email: string,
+    subject: string,
+    content: string
+  ): Promise<void> {
     await this.emailTransporter.sendMail({
-      from: this.configService.get('SMTP_FROM'),
+      from: this.configService.get("SMTP_FROM"),
       to: email,
       subject,
       html: content,
@@ -90,26 +100,35 @@ export class NotificationsService {
     // Dans une implémentation réelle, vous utiliseriez un service comme Twilio, Nexmo, etc.
     console.log(`Sending SMS to ${phoneNumber}: ${message}`);
     // Simuler un délai d'envoi
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
 
-  async sendPushNotification(userId: string, title: string, body: string, data?: any): Promise<void> {
+  async sendPushNotification(
+    userId: string,
+    title: string,
+    body: string,
+    data?: any
+  ): Promise<void> {
     // Simulation d'envoi de notification push
     // Dans une implémentation réelle, vous utiliseriez Firebase Cloud Messaging, OneSignal, etc.
-    console.log(`Sending push notification to user ${userId}: ${title} - ${body}`);
+    console.log(
+      `Sending push notification to user ${userId}: ${title} - ${body}`
+    );
     // Simuler un délai d'envoi
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
 
   async findAllForUser(userId: string): Promise<Notification[]> {
     return this.notificationsRepository.find({
       where: { userId },
-      order: { createdAt: 'DESC' },
+      order: { createdAt: "DESC" },
     });
   }
 
   async markAsRead(id: string): Promise<Notification> {
-    const notification = await this.notificationsRepository.findOne({ where: { id } });
+    const notification = await this.notificationsRepository.findOne({
+      where: { id },
+    });
     if (!notification) {
       throw new Error(`Notification with ID ${id} not found`);
     }

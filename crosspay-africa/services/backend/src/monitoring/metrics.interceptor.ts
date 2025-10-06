@@ -1,7 +1,12 @@
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { MetricsService } from './metrics.service';
+import {
+  Injectable,
+  NestInterceptor,
+  ExecutionContext,
+  CallHandler,
+} from "@nestjs/common";
+import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
+import { MetricsService } from "./metrics.service";
 
 @Injectable()
 export class MetricsInterceptor implements NestInterceptor {
@@ -17,7 +22,7 @@ export class MetricsInterceptor implements NestInterceptor {
         next: () => {
           const statusCode = context.switchToHttp().getResponse().statusCode;
           const duration = Date.now() - startTime;
-          
+
           // Enregistrer les métriques
           this.metricsService.incrementHttpRequests(method, url, statusCode);
           this.metricsService.recordApiRequestDuration(method, url, duration);
@@ -25,12 +30,12 @@ export class MetricsInterceptor implements NestInterceptor {
         error: () => {
           const statusCode = 500; // Erreur par défaut
           const duration = Date.now() - startTime;
-          
+
           // Enregistrer les métriques en cas d'erreur
           this.metricsService.incrementHttpRequests(method, url, statusCode);
           this.metricsService.recordApiRequestDuration(method, url, duration);
         },
-      }),
+      })
     );
   }
 }

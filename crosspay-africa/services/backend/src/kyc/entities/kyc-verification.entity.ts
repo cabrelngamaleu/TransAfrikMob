@@ -1,26 +1,34 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { User } from '../../users/entities/user.entity';
-import { VerificationStatus } from '../verification-status.enum';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
+import { User } from "../../users/entities/user.entity";
+import { VerificationStatus } from "../verification-status.enum";
 
 export { VerificationStatus };
 
-@Entity('kyc_verifications')
+@Entity("kyc_verifications")
 export class KycVerification {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ nullable: true })
   verificationAmount: number;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: VerificationStatus,
-    default: VerificationStatus.PENDING
+    default: VerificationStatus.PENDING,
   })
   status: VerificationStatus;
 
-  @ManyToOne(() => User, user => user.kycVerifications)
-  @JoinColumn({ name: 'user_id' })
+  @ManyToOne(() => User, (user) => user.kycVerifications)
+  @JoinColumn({ name: "user_id" })
   user: User;
 
   @Column({ nullable: true })

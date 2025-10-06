@@ -32,7 +32,11 @@ export interface PaymentVerificationResponse {
 }
 
 export interface PaymentAdapter {
-  initiate(request: PaymentInitiationRequest): Promise<PaymentInitiationResponse>;
-  verify(request: PaymentVerificationRequest): Promise<PaymentVerificationResponse>;
+  initiate(
+    request: PaymentInitiationRequest
+  ): Promise<PaymentInitiationResponse>;
+  verify(
+    request: PaymentVerificationRequest
+  ): Promise<PaymentVerificationResponse>;
   getName(): string;
 }

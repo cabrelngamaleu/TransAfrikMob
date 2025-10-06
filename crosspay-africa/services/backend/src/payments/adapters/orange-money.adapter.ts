@@ -1,13 +1,13 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import axios from 'axios';
+import { Injectable, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import axios from "axios";
 import {
   PaymentAdapter,
   PaymentInitiationRequest,
   PaymentInitiationResponse,
   PaymentVerificationRequest,
   PaymentVerificationResponse,
-} from './payment-adapter.interface';
+} from "./payment-adapter.interface";
 
 @Injectable()
 export class OrangeMoneyAdapter implements PaymentAdapter {
@@ -17,18 +17,24 @@ export class OrangeMoneyAdapter implements PaymentAdapter {
   private readonly merchantId: string;
 
   constructor(private configService: ConfigService) {
-    this.apiUrl = this.configService.get<string>('ORANGE_MONEY_API_URL');
-    this.apiKey = this.configService.get<string>('ORANGE_MONEY_API_KEY');
-    this.merchantId = this.configService.get<string>('ORANGE_MONEY_MERCHANT_ID');
+    this.apiUrl = this.configService.get<string>("ORANGE_MONEY_API_URL");
+    this.apiKey = this.configService.get<string>("ORANGE_MONEY_API_KEY");
+    this.merchantId = this.configService.get<string>(
+      "ORANGE_MONEY_MERCHANT_ID"
+    );
   }
 
   getName(): string {
-    return 'Orange Money';
+    return "Orange Money";
   }
 
-  async initiate(request: PaymentInitiationRequest): Promise<PaymentInitiationResponse> {
+  async initiate(
+    request: PaymentInitiationRequest
+  ): Promise<PaymentInitiationResponse> {
     try {
-      this.logger.log(`Initiating Orange Money payment for ${request.amount} ${request.currency}`);
+      this.logger.log(
+        `Initiating Orange Money payment for ${request.amount} ${request.currency}`
+      );
 
       // Simulation d'une requête à l'API Orange Money
       // Dans une implémentation réelle, vous feriez un appel à l'API Orange Money
@@ -38,7 +44,7 @@ export class OrangeMoneyAdapter implements PaymentAdapter {
         currency: request.currency,
         phoneNumber: request.phoneNumber,
         reference: request.reference,
-        description: request.description || 'Paiement CrossPay',
+        description: request.description || "Paiement CrossPay",
         callbackUrl: request.callbackUrl,
       });
 
@@ -46,22 +52,32 @@ export class OrangeMoneyAdapter implements PaymentAdapter {
         success: true,
         transactionId: response.data.transactionId,
         providerReference: response.data.providerReference,
-        status: 'pending',
-        message: 'Paiement initié avec succès. Veuillez confirmer sur votre téléphone.',
+        status: "pending",
+        message:
+          "Paiement initié avec succès. Veuillez confirmer sur votre téléphone.",
       };
     } catch (error) {
-      this.logger.error('Erreur lors de l\'initiation du paiement Orange Money', error);
+      this.logger.error(
+        "Erreur lors de l'initiation du paiement Orange Money",
+        error
+      );
       return {
         success: false,
-        status: 'failed',
-        message: error.response?.data?.message || 'Erreur lors de l\'initiation du paiement',
+        status: "failed",
+        message:
+          error.response?.data?.message ||
+          "Erreur lors de l'initiation du paiement",
       };
     }
   }
 
-  async verify(request: PaymentVerificationRequest): Promise<PaymentVerificationResponse> {
+  async verify(
+    request: PaymentVerificationRequest
+  ): Promise<PaymentVerificationResponse> {
     try {
-      this.logger.log(`Vérification du paiement Orange Money: ${request.transactionId}`);
+      this.logger.log(
+        `Vérification du paiement Orange Money: ${request.transactionId}`
+      );
 
       // Simulation d'une requête à l'API Orange Money pour vérifier le statut
       // Dans une implémentation réelle, vous feriez un appel à l'API Orange Money
@@ -75,16 +91,21 @@ export class OrangeMoneyAdapter implements PaymentAdapter {
         status: response.data.status,
         amount: response.data.amount,
         currency: response.data.currency,
-        message: 'Vérification réussie',
+        message: "Vérification réussie",
         providerReference: response.data.providerReference,
         paymentDate: new Date(response.data.paymentDate),
       };
     } catch (error) {
-      this.logger.error('Erreur lors de la vérification du paiement Orange Money', error);
+      this.logger.error(
+        "Erreur lors de la vérification du paiement Orange Money",
+        error
+      );
       return {
         success: false,
-        status: 'error',
-        message: error.response?.data?.message || 'Erreur lors de la vérification du paiement',
+        status: "error",
+        message:
+          error.response?.data?.message ||
+          "Erreur lors de la vérification du paiement",
       };
     }
   }
@@ -92,14 +113,14 @@ export class OrangeMoneyAdapter implements PaymentAdapter {
   // Méthode de simulation pour le développement
   private async simulateApiCall(data: any): Promise<any> {
     // Simuler un délai réseau
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Simuler une réponse réussie
     return {
       data: {
         transactionId: `OM-${Date.now()}`,
         providerReference: `OM-REF-${Math.floor(Math.random() * 1000000)}`,
-        status: 'pending',
+        status: "pending",
       },
     };
   }
@@ -107,17 +128,19 @@ export class OrangeMoneyAdapter implements PaymentAdapter {
   // Méthode de simulation pour le développement
   private async simulateVerificationApiCall(data: any): Promise<any> {
     // Simuler un délai réseau
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Simuler une réponse réussie (80% de chance) ou échouée (20% de chance)
     const isSuccessful = Math.random() > 0.2;
 
     return {
       data: {
-        status: isSuccessful ? 'completed' : 'failed',
+        status: isSuccessful ? "completed" : "failed",
         amount: 10000,
-        currency: 'XAF',
-        providerReference: data.providerReference || `OM-REF-${Math.floor(Math.random() * 1000000)}`,
+        currency: "XAF",
+        providerReference:
+          data.providerReference ||
+          `OM-REF-${Math.floor(Math.random() * 1000000)}`,
         paymentDate: new Date().toISOString(),
       },
     };
