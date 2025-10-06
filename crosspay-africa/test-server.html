@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossPay Africa - Test de Connexion</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        .success {
+            color: #4CAF50;
+            font-size: 3rem;
+            margin: 1rem 0;
+        }
+        .info {
+            background: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #667eea;
+        }
+        .status {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .status:last-child {
+            border-bottom: none;
+        }
+        .badge {
+            background: #4CAF50;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success">✅</div>
+        <h1>Connexion Réussie!</h1>
+        <p>Le serveur CrossPay Africa fonctionne correctement.</p>
+        
+        <div class="info">
+            <h3>État des Services</h3>
+            <div class="status">
+                <span>PostgreSQL</span>
+                <span class="badge">Running (5432)</span>
+            </div>
+            <div class="status">
+                <span>Redis</span>
+                <span class="badge">Running (6379)</span>
+            </div>
+            <div class="status">
+                <span>Interface Admin</span>
+                <span class="badge">Running (3002)</span>
+            </div>
+        </div>
+        
+        <p><strong>Si vous voyez cette page, votre port forwarding fonctionne!</strong></p>
+        
+        <a href="http://localhost:3002" target="_blank">Ouvrir l'Interface Admin</a>
+    </div>
+</body>
+</html>
