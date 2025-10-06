@@ -1,0 +1,77 @@
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    OÙ CLIQUER DANS CURSOR                                  ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│  Cursor - CrossPay Africa                                        ─ □ ✕   │
+├──────────────────────────────────────────────────────────────────────────┤
+│  Fichier  Édition  Affichage  Aller  Exécuter  Terminal  Aide           │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                           │
+│  Explorer    Code ici...                                                 │
+│    📁 crosspay-africa                                                    │
+│       📁 apps                                                            │
+│       📁 services                                                        │
+│                                                                           │
+│                                                                           │
+│                                                                           │
+│                                                                           │
+│                                                                           │
+├──────────────────────────────────────────────────────────────────────────┤
+│  TERMINAL    PROBLEMS    OUTPUT    DEBUG CONSOLE    PORTS  ← CLIQUEZ ICI!│
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                           │
+│  Port    Local Address        Process          Running Process           │
+│  ───────────────────────────────────────────────────────────────────     │
+│  3002    localhost:3002       node              🌐  ← PUIS CLIQUEZ ICI!  │
+│                                                                           │
+└──────────────────────────────────────────────────────────────────────────┘
+
+                            👆👆👆
+                   CHERCHEZ EN BAS DE CURSOR !
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+
+SI VOUS NE VOYEZ PAS L'ONGLET "PORTS":
+
+1️⃣  Appuyez simultanément: Ctrl + J
+    (Cela affiche/masque le panneau du bas)
+
+2️⃣  Ou bien: Ctrl + Shift + P
+    Puis tapez: "View: Toggle Panel"
+
+3️⃣  Une fois le panneau visible, cliquez sur "PORTS"
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+
+VOUS POURRIEZ AUSSI VOIR UNE NOTIFICATION:
+
+┌────────────────────────────────────────────┐
+│  ⓘ Port 3002 is available                 │
+│                                            │
+│     [Open in Browser]     [Ignore]        │  ← CLIQUEZ "Open in Browser"
+└────────────────────────────────────────────┘
+
+Cette notification apparaît en bas à droite quand un serveur démarre.
+
+
+═══════════════════════════════════════════════════════════════════════════
+
+
+APRÈS AVOIR CLIQUÉ SUR 🌐:
+
+Votre navigateur s'ouvrira automatiquement avec une URL comme:
+   → http://localhost:3002
+   OU
+   → http://127.0.0.1:3002
+
+Et vous verrez l'application CrossPay Africa ! ✅
+
+
+═══════════════════════════════════════════════════════════════════════════

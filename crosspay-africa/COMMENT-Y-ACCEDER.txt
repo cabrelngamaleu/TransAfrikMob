@@ -1,0 +1,113 @@
+╔══════════════════════════════════════════════════════════════════╗
+║  🌐 COMMENT ACCÉDER À L'APPLICATION DEPUIS VOTRE NAVIGATEUR     ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📍 VOTRE SITUATION:
+Vous travaillez dans Cursor, qui exécute le code dans un container Docker.
+Le serveur tourne dans ce container, PAS sur votre PC.
+
+🔧 SOLUTION EN 3 ÉTAPES:
+
+╔═════════════════════════════════════════════════════════════╗
+║  ÉTAPE 1: Trouver le panneau PORTS dans Cursor             ║
+╚═════════════════════════════════════════════════════════════╝
+
+En BAS de votre fenêtre Cursor, vous voyez des onglets:
+   TERMINAL    PROBLEMS    OUTPUT    DEBUG CONSOLE    PORTS
+                                                        ^^^^^ 
+                                                    Cliquez ici!
+
+Si vous ne voyez PAS l'onglet PORTS:
+   → Appuyez sur: Ctrl + Shift + P  (ou Cmd + Shift + P sur Mac)
+   → Tapez: "View: Toggle Panel"
+   → L'onglet PORTS devrait apparaître
+
+
+╔═════════════════════════════════════════════════════════════╗
+║  ÉTAPE 2: Vérifier que le port 3002 est listé              ║
+╚═════════════════════════════════════════════════════════════╝
+
+Dans l'onglet PORTS, vous devriez voir:
+
+   Port    Local Address        Process
+   ────────────────────────────────────
+   3002    localhost:3002       node
+
+
+╔═════════════════════════════════════════════════════════════╗
+║  ÉTAPE 3: Ouvrir dans le navigateur                         ║
+╚═════════════════════════════════════════════════════════════╝
+
+Option A (recommandé):
+   → Cliquez sur l'icône 🌐 (globe) à droite de la ligne 3002
+   → Votre navigateur s'ouvrira automatiquement
+
+Option B:
+   → Clic droit sur la ligne 3002
+   → Sélectionnez "Open in Browser"
+
+Option C:
+   → Copiez l'URL affichée (ex: http://localhost:3002)
+   → Collez-la dans votre navigateur
+
+
+╔═════════════════════════════════════════════════════════════╗
+║  SI LE PORT 3002 N'APPARAIT PAS AUTOMATIQUEMENT             ║
+╚═════════════════════════════════════════════════════════════╝
+
+Vous pouvez le forwarder manuellement:
+
+1. Dans l'onglet PORTS, cliquez sur le bouton "+"
+   (ou "Forward a Port")
+
+2. Entrez: 3002
+
+3. Appuyez sur Entrée
+
+4. Le port apparaîtra et vous pourrez cliquer sur 🌐
+
+
+╔═════════════════════════════════════════════════════════════╗
+║  QUE SE PASSE-T-IL ?                                        ║
+╚═════════════════════════════════════════════════════════════╝
+
+Avant (ne marche pas):
+   Votre navigateur → localhost:3002 sur VOTRE PC → ❌ Rien
+
+Après port forwarding:
+   Votre navigateur → localhost:3002 → Cursor redirige → Container:3002 → ✅ App!
+
+
+╔═════════════════════════════════════════════════════════════╗
+║  VÉRIFICATION QUE ÇA MARCHE                                 ║
+╚═════════════════════════════════════════════════════════════╝
+
+Une fois dans votre navigateur, vous devriez voir:
+   ✅ Un spinner qui tourne (Loading...)
+   ✅ Une page avec interface Chakra UI
+   ✅ L'application CrossPay Africa
+
+
+╔═════════════════════════════════════════════════════════════╗
+║  AIDE SUPPLÉMENTAIRE                                        ║
+╚═════════════════════════════════════════════════════════════╝
+
+Si vraiment ça ne marche toujours pas:
+   → Regardez si une notification apparaît en bas à droite
+     de Cursor qui dit "Port 3002 is available"
+   → Cliquez sur "Open in Browser" dans cette notification
+
+Autre option:
+   → Dans le terminal Cursor, tapez:
+     curl http://localhost:3002
+   → Si ça retourne du HTML, le serveur marche
+   → Le problème est juste l'accès depuis votre navigateur
+
+
+═══════════════════════════════════════════════════════════════
+
+💡 ASTUCE: Cursor devrait normalement détecter automatiquement
+    qu'un serveur tourne sur le port 3002 et vous proposer
+    de l'ouvrir. Regardez les notifications!
+
+═══════════════════════════════════════════════════════════════
