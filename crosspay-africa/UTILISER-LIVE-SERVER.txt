@@ -1,0 +1,92 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║           🚀 GUIDE: UTILISER LIVE SERVER                          ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+
+📋 ÉTAPES DÉTAILLÉES:
+
+┌───────────────────────────────────────────────────────────────┐
+│  ÉTAPE 1: Localiser le fichier index.html                     │
+└───────────────────────────────────────────────────────────────┘
+
+Dans Cursor, à GAUCHE de votre écran:
+
+    📁 EXPLORER
+    └── 📁 crosspay-africa
+        ├── 📁 apps
+        ├── 📁 services
+        ├── 📄 index.html  ← CHERCHEZ CE FICHIER !
+        ├── 📄 package.json
+        └── ...
+
+
+┌───────────────────────────────────────────────────────────────┐
+│  ÉTAPE 2: Ouvrir avec Live Server                             │
+└───────────────────────────────────────────────────────────────┘
+
+1. Clic droit sur "index.html"
+
+2. Dans le menu qui s'ouvre, cherchez:
+   → "Open with Live Server"
+   OU
+   → "Go Live"
+
+3. Cliquez dessus
+
+
+┌───────────────────────────────────────────────────────────────┐
+│  ÉTAPE 3: Que va-t-il se passer ?                             │
+└───────────────────────────────────────────────────────────────┘
+
+✅ Votre navigateur va s'ouvrir automatiquement
+
+✅ Vous verrez une belle page "CrossPay Africa"
+
+✅ La page va automatiquement:
+   - Tester la connexion au serveur
+   - Vous rediriger vers l'application
+   - OU vous montrer comment y accéder
+
+
+┌───────────────────────────────────────────────────────────────┐
+│  SI LIVE SERVER N'EST PAS INSTALLÉ                            │
+└───────────────────────────────────────────────────────────────┘
+
+Si vous ne voyez pas "Open with Live Server" dans le menu:
+
+1. Installez l'extension:
+   - Ctrl + Shift + X (pour ouvrir les extensions)
+   - Cherchez: "Live Server"
+   - Installez l'extension de "Ritwick Dey"
+
+2. Puis recommencez l'étape 2
+
+
+┌───────────────────────────────────────────────────────────────┐
+│  ALTERNATIVE: Ouvrir directement dans le navigateur           │
+└───────────────────────────────────────────────────────────────┘
+
+Vous pouvez aussi simplement:
+
+1. Ouvrir votre navigateur (Chrome, Firefox, etc.)
+
+2. Faire: Ctrl + O (Fichier → Ouvrir)
+
+3. Naviguer jusqu'à:
+   /workspace/crosspay-africa/index.html
+
+4. Ouvrir le fichier
+
+
+═══════════════════════════════════════════════════════════════
+
+💡 NOTE IMPORTANTE:
+
+Live Server va servir la page HTML, mais l'application Next.js
+tourne SÉPARÉMENT sur le port 3002.
+
+La page HTML va simplement vous REDIRIGER vers l'application.
+
+C'est comme un "pont" entre Live Server et votre application.
+
+═══════════════════════════════════════════════════════════════

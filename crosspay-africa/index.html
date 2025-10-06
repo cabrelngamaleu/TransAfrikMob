@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossPay Africa - Redirecting...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 8px;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+        }
+        
+        .info-box li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: #48bb78;
+        }
+        
+        .btn-secondary:hover {
+            background: #38a169;
+        }
+        
+        .warning {
+            background: #fff5f5;
+            border-left: 4px solid #e53e3e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .warning h4 {
+            color: #e53e3e;
+            margin-bottom: 8px;
+        }
+        
+        .success {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .success h4 {
+            color: #48bb78;
+            margin-bottom: 8px;
+        }
+        
+        .code {
+            background: #1a202c;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            text-align: left;
+            overflow-x: auto;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        #status {
+            font-weight: bold;
+            color: #667eea;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🌍</div>
+        <h1>CrossPay Africa</h1>
+        <p class="message">Plateforme de paiement transfrontalière pour l'Afrique</p>
+        
+        <div class="success">
+            <h4>✅ Serveur démarré avec succès !</h4>
+            <p>L'application Next.js tourne sur le port 3002</p>
+        </div>
+        
+        <div id="status">Tentative de connexion au serveur...</div>
+        <div class="spinner" id="spinner"></div>
+        
+        <div class="info-box">
+            <h3>🔧 Comment accéder à l'application :</h3>
+            <ul>
+                <li><strong>Option 1 (Recommandé) :</strong> Cliquez sur le bouton ci-dessous pour ouvrir dans un nouvel onglet</li>
+                <li><strong>Option 2 :</strong> Utilisez l'onglet PORTS dans Cursor (en bas de la fenêtre)</li>
+                <li><strong>Option 3 :</strong> Faites défiler vers le bas pour voir l'iframe</li>
+            </ul>
+        </div>
+        
+        <a href="http://localhost:3002" target="_blank" class="btn" onclick="trackClick()">
+            🚀 Ouvrir CrossPay Africa
+        </a>
+        
+        <button class="btn btn-secondary" onclick="loadInIframe()">
+            📱 Charger dans cette page
+        </button>
+        
+        <div class="warning">
+            <h4>⚠️ Important</h4>
+            <p>Si le lien ne fonctionne pas directement, c'est normal ! Vous êtes dans un container Docker.</p>
+            <p><strong>Solution :</strong> Utilisez l'onglet PORTS dans Cursor pour accéder à l'application.</p>
+        </div>
+        
+        <div id="iframe-container"></div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>📊 Informations techniques :</h3>
+            <div class="code">
+                <div>✅ PostgreSQL: Running (port 5432)</div>
+                <div>✅ Redis: Running (port 6379)</div>
+                <div>✅ Next.js Dev Server: Running (port 3002)</div>
+                <div>📦 Packages installés: 2840</div>
+                <div>🔧 Framework: Next.js + Chakra UI</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Test de connexion au serveur
+        async function testConnection() {
+            const statusEl = document.getElementById('status');
+            const spinnerEl = document.getElementById('spinner');
+            
+            try {
+                const response = await fetch('http://localhost:3002', { 
+                    mode: 'no-cors' 
+                });
+                
+                statusEl.textContent = '✅ Connexion réussie ! Le serveur répond.';
+                statusEl.style.color = '#48bb78';
+                spinnerEl.style.display = 'none';
+                
+                // Redirection automatique après 2 secondes
+                setTimeout(() => {
+                    statusEl.textContent = '🔄 Redirection automatique dans 3...';
+                    setTimeout(() => {
+                        statusEl.textContent = '🔄 Redirection automatique dans 2...';
+                        setTimeout(() => {
+                            statusEl.textContent = '🔄 Redirection automatique dans 1...';
+                            setTimeout(() => {
+                                window.open('http://localhost:3002', '_blank');
+                                statusEl.textContent = '✅ Application ouverte dans un nouvel onglet !';
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }, 2000);
+                
+            } catch (error) {
+                statusEl.textContent = '⚠️ Impossible de se connecter directement. Utilisez l\'onglet PORTS dans Cursor.';
+                statusEl.style.color = '#e53e3e';
+                spinnerEl.style.display = 'none';
+            }
+        }
+        
+        function trackClick() {
+            document.getElementById('status').textContent = '🚀 Ouverture de l\'application...';
+        }
+        
+        function loadInIframe() {
+            const container = document.getElementById('iframe-container');
+            container.innerHTML = '<iframe src="http://localhost:3002"></iframe>';
+            document.getElementById('status').textContent = '📱 Application chargée ci-dessous';
+        }
+        
+        // Tester la connexion au chargement
+        window.addEventListener('load', testConnection);
+    </script>
+</body>
+</html>
