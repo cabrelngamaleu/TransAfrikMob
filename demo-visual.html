@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossPay Africa - Démo Visuelle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0080ff 0%, #00ccff 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .info-box {
+            background: #f7fafc;
+            border-left: 4px solid #0080ff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .info-box h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .info-box p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,128,255,0.2);
+            border-color: #0080ff;
+        }
+        
+        .feature-card h3 {
+            color: #0080ff;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            color: #4a5568;
+        }
+        
+        .feature-card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .feature-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0080ff 0%, #00ccff 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0,128,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,128,255,0.4);
+        }
+        
+        .iframe-container {
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 3px solid #e2e8f0;
+        }
+        
+        .iframe-container iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+        
+        .credentials {
+            background: #fff5f5;
+            border: 2px solid #fc8181;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .credentials h3 {
+            color: #c53030;
+            margin-bottom: 15px;
+        }
+        
+        .credentials code {
+            background: #feb2b2;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            color: #742a2a;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 CrossPay Africa</h1>
+            <p>Démonstration de l'Interface d'Administration</p>
+        </div>
+        
+        <div class="content">
+            <div class="info-box">
+                <h2>🚀 Bienvenue dans la Démo Visuelle</h2>
+                <p>
+                    L'application CrossPay Africa est maintenant en cours d'exécution. Vous pouvez accéder à l'interface d'administration complète en cliquant sur le bouton ci-dessous ou en utilisant l'iframe intégré.
+                </p>
+                <p style="margin-top: 15px;">
+                    <a href="http://localhost:3000" target="_blank" class="cta-button">🎯 Ouvrir l'Interface Complète</a>
+                </p>
+            </div>
+            
+            <div class="credentials">
+                <h3>🔐 Identifiants de Connexion (Démo)</h3>
+                <p><strong>Email :</strong> <code>admin@crosspay.africa</code></p>
+                <p><strong>Mot de passe :</strong> <code>password</code></p>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #742a2a;">
+                    ⚠️ Ces identifiants sont uniquement pour la démonstration. En production, utilisez des identifiants sécurisés.
+                </p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>📊 Tableau de Bord Moderne</h3>
+                    <ul>
+                        <li>Statistiques en temps réel</li>
+                        <li>Cartes animées et interactives</li>
+                        <li>Graphiques de performance</li>
+                        <li>Métriques clés visibles</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>💳 Gestion des Transactions</h3>
+                    <ul>
+                        <li>Liste des transactions récentes</li>
+                        <li>Filtres par statut</li>
+                        <li>Badges colorés pour les états</li>
+                        <li>Actions rapides</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎨 Design Futuriste</h3>
+                    <ul>
+                        <li>Interface responsive</li>
+                        <li>Mode clair/sombre</li>
+                        <li>Animations fluides</li>
+                        <li>Expérience utilisateur optimisée</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔍 Vérification KYC</h3>
+                    <ul>
+                        <li>Liste des vérifications</li>
+                        <li>Filtrage avancé</li>
+                        <li>Statuts colorés</li>
+                        <li>Détails complets</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="number">5,024</div>
+                    <div class="label">Transactions Totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">$103K</div>
+                    <div class="label">Volume (USD)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">1,257</div>
+                    <div class="label">Utilisateurs Actifs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">12</div>
+                    <div class="label">Pays Desservis</div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h2>🖥️ Aperçu de l'Interface</h2>
+                <p>
+                    Voici un aperçu intégré de l'interface d'administration. Vous pouvez interagir directement avec l'application depuis cet aperçu.
+                </p>
+            </div>
+            
+            <div class="iframe-container">
+                <iframe src="http://localhost:3000"></iframe>
+            </div>
+            
+            <div class="info-box">
+                <h2>✨ Points Forts de l'Expérience Utilisateur</h2>
+                <p><strong>1. Navigation Intuitive :</strong> Menu latéral clair avec des icônes reconnaissables</p>
+                <p><strong>2. Animations Fluides :</strong> Transitions douces entre les pages avec Framer Motion</p>
+                <p><strong>3. Design Responsive :</strong> Adapté à tous les appareils (mobile, tablette, desktop)</p>
+                <p><strong>4. Feedback Visuel :</strong> Badges colorés, états de chargement, messages d'erreur clairs</p>
+                <p><strong>5. Performance :</strong> Chargement rapide et réactivité excellente</p>
+                <p><strong>6. Accessibilité :</strong> Mode sombre/clair, contrastes élevés, navigation au clavier</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 30px; background: #f7fafc; border-radius: 12px;">
+                <h2 style="color: #2d3748; margin-bottom: 15px;">🎯 Prêt à Explorer ?</h2>
+                <p style="color: #4a5568; margin-bottom: 20px;">
+                    Ouvrez l'interface complète dans un nouvel onglet pour une expérience optimale
+                </p>
+                <a href="http://localhost:3000" target="_blank" class="cta-button">
+                    Lancer l'Application →
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

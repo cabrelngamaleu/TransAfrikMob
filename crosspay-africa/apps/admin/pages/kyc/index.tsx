@@ -19,8 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import Layout from '../../components/Layout';
-import { useAuth } from '../../../../services/admin/src/contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Types
 interface KycVerification {
@@ -110,72 +109,70 @@ const KycVerificationList = () => {
   };
 
   return (
-    <Layout>
-      <Box p={5}>
-        <Flex justify="space-between" align="center" mb={6}>
-          <Heading size="lg">Vérifications KYC</Heading>
-          <HStack>
-            <Text>Filtrer par statut:</Text>
-            <Select 
-              value={statusFilter} 
-              onChange={(e) => setStatusFilter(e.target.value)}
-              width="200px"
-            >
-              <option value="all">Tous</option>
-              <option value="pending">En attente</option>
-              <option value="approved">Approuvés</option>
-              <option value="rejected">Rejetés</option>
-              <option value="expired">Expirés</option>
-            </Select>
-          </HStack>
-        </Flex>
+    <Box p={5}>
+      <Flex justify="space-between" align="center" mb={6}>
+        <Heading size="lg">Vérifications KYC</Heading>
+        <HStack>
+          <Text>Filtrer par statut:</Text>
+          <Select 
+            value={statusFilter} 
+            onChange={(e) => setStatusFilter(e.target.value)}
+            width="200px"
+          >
+            <option value="all">Tous</option>
+            <option value="pending">En attente</option>
+            <option value="approved">Approuvés</option>
+            <option value="rejected">Rejetés</option>
+            <option value="expired">Expirés</option>
+          </Select>
+        </HStack>
+      </Flex>
 
-        {loading ? (
-          <Flex justify="center" align="center" height="300px">
-            <Spinner size="xl" />
-          </Flex>
-        ) : error ? (
-          <Text color="red.500" textAlign="center">{error}</Text>
-        ) : verifications.length === 0 ? (
-          <Text textAlign="center">Aucune vérification KYC trouvée</Text>
-        ) : (
-          <Table variant="simple">
-            <Thead>
-              <Tr>
-                <Th>ID</Th>
-                <Th>Utilisateur</Th>
-                <Th>Type de document</Th>
-                <Th>Numéro</Th>
-                <Th>Statut</Th>
-                <Th>Date de création</Th>
-                <Th>Actions</Th>
+      {loading ? (
+        <Flex justify="center" align="center" height="300px">
+          <Spinner size="xl" />
+        </Flex>
+      ) : error ? (
+        <Text color="red.500" textAlign="center">{error}</Text>
+      ) : verifications.length === 0 ? (
+        <Text textAlign="center">Aucune vérification KYC trouvée</Text>
+      ) : (
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>ID</Th>
+              <Th>Utilisateur</Th>
+              <Th>Type de document</Th>
+              <Th>Numéro</Th>
+              <Th>Statut</Th>
+              <Th>Date de création</Th>
+              <Th>Actions</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {verifications.map((verification) => (
+              <Tr key={verification.id}>
+                <Td>{verification.id.substring(0, 8)}...</Td>
+                <Td>{`${verification.user.firstName} ${verification.user.lastName}`}</Td>
+                <Td>{verification.documentType}</Td>
+                <Td>{verification.documentNumber}</Td>
+                <Td>{getStatusBadge(verification.status)}</Td>
+                <Td>{formatDate(verification.createdAt)}</Td>
+                <Td>
+                  <Button
+                    size="sm"
+                    colorScheme="blue"
+                    onClick={() => handleViewDetails(verification.id)}
+                  >
+                    Détails
+                  </Button>
+                </Td>
               </Tr>
-            </Thead>
-            <Tbody>
-              {verifications.map((verification) => (
-                <Tr key={verification.id}>
-                  <Td>{verification.id.substring(0, 8)}...</Td>
-                  <Td>{`${verification.user.firstName} ${verification.user.lastName}`}</Td>
-                  <Td>{verification.documentType}</Td>
-                  <Td>{verification.documentNumber}</Td>
-                  <Td>{getStatusBadge(verification.status)}</Td>
-                  <Td>{formatDate(verification.createdAt)}</Td>
-                  <Td>
-                    <Button
-                      size="sm"
-                      colorScheme="blue"
-                      onClick={() => handleViewDetails(verification.id)}
-                    >
-                      Détails
-                    </Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        )}
-      </Box>
-    </Layout>
+            ))}
+          </Tbody>
+        </Table>
+      )}
+    </Box>
   );
 };
 

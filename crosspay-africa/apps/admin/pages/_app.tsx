@@ -1,10 +1,11 @@
 import { ChakraProvider, extendTheme, ColorModeScript } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Layout from '../components/Layout';
-import { AuthProvider } from '../../../services/admin/src/contexts/AuthContext';
-import ProtectedRoute from '../../../services/admin/src/components/ProtectedRoute';
+import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const theme = extendTheme({
   colors: {
@@ -29,7 +30,7 @@ const theme = extendTheme({
 });
 
 export default function App({ Component, pageProps, router }: AppProps) {
-  const isLoginPage = Component.name === 'Login';
+  const isLoginPage = router.route === '/login';
 
   return (
     <ChakraProvider theme={theme}>
@@ -41,13 +42,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
               <Component {...pageProps} key={router.route} />
             </AnimatePresence>
           ) : (
-            <ProtectedRoute>
-              <Layout>
-                <AnimatePresence mode="wait">
-                  <Component {...pageProps} key={router.route} />
-                </AnimatePresence>
-              </Layout>
-            </ProtectedRoute>
+            <Layout>
+              <AnimatePresence mode="wait">
+                <Component {...pageProps} key={router.route} />
+              </AnimatePresence>
+            </Layout>
           )}
         </AuthProvider>
       </ThemeProvider>
